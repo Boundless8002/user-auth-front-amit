@@ -19,12 +19,9 @@ const ResetPassword = () => {
       );
       return;
     }
-    Axios.post(
-      `https://user-auth-amit.onrender.com/auth/user/reset-password/${token}`,
-      {
-        password,
-      }
-    )
+    Axios.post(`https://user-auth-amit.onrender.com/reset-password/${token}`, {
+      password,
+    })
       .then((response) => {
         console.log(response.data);
         toast.success("Password is successfully changed");

@@ -8,7 +8,7 @@ const Header = () => {
 
   const handleLogout = () => {
     axios
-      .get("https://user-auth-amit.onrender.com/auth/user/logout")
+      .get("https://user-auth-amit.onrender.com/logout")
       .then((res) => {
         if (res.data.status) {
           navigate("/login");

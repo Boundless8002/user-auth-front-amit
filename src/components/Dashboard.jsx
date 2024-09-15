@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     axios
-      .get("https://user-auth-amit.onrender.com/auth/user/logout")
+      .get("https://user-auth-amit.onrender.com/logout")
       .then((res) => {
         if (res.data.status) {
           setTimeout(() => {
@@ -24,23 +24,19 @@ const Dashboard = () => {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios
-      .get("https://user-auth-amit.onrender.com/auth/user/verify")
-      .then((res) => {
-        if (res.data.status) {
-          axios
-            .get("https://user-auth-amit.onrender.com/auth/user")
-            .then((res) => {
-              if (res.data.username) {
-                setUsername(res.data.username);
-              }
-              setLoading(false);
-              console.log(res);
-            });
-        } else {
-          navigate("/");
-        }
-      });
+    axios.get("https://user-auth-amit.onrender.com/verify").then((res) => {
+      if (res.data.status) {
+        axios.get("https://user-auth-amit.onrender.com").then((res) => {
+          if (res.data.username) {
+            setUsername(res.data.username);
+          }
+          setLoading(false);
+          console.log(res);
+        });
+      } else {
+        navigate("/");
+      }
+    });
   }, [navigate]);
 
   if (loading) {

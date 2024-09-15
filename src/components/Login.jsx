@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(
-        "https://user-auth-amit.onrender.com/auth/user/login",
+        "https://user-auth-amit.onrender.com/login",
         {
           email,
           password,

@@ -26,7 +26,7 @@ const Signup = () => {
       );
       return;
     }
-    Axios.post("https://user-auth-amit.onrender.com/auth/user/signup", {
+    Axios.post("https://user-auth-amit.onrender.com/signup", {
       username,
       email,
       password,
