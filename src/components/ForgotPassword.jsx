@@ -11,9 +11,12 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:5000/auth/forgot-password", {
-      email,
-    })
+    Axios.post(
+      "https://user-auth-amit.onrender.com/auth/user/forgot-password",
+      {
+        email,
+      }
+    )
       .then((response) => {
         console.log(response);
         toast.success("Check your email for reset password");

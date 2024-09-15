@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     axios
-      .get("http://localhost:5000/auth/logout")
+      .get("https://user-auth-amit.onrender.com/auth/user/logout")
       .then((res) => {
         if (res.data.status) {
           setTimeout(() => {
@@ -24,19 +24,23 @@ const Dashboard = () => {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get("http://localhost:5000/auth/verify").then((res) => {
-      if (res.data.status) {
-        axios.get("http://localhost:5000/auth/user").then((res) => {
-          if (res.data.username) {
-            setUsername(res.data.username);
-          }
-          setLoading(false);
-          console.log(res);
-        });
-      } else {
-        navigate("/");
-      }
-    });
+    axios
+      .get("https://user-auth-amit.onrender.com/auth/user/verify")
+      .then((res) => {
+        if (res.data.status) {
+          axios
+            .get("https://user-auth-amit.onrender.com/auth/user")
+            .then((res) => {
+              if (res.data.username) {
+                setUsername(res.data.username);
+              }
+              setLoading(false);
+              console.log(res);
+            });
+        } else {
+          navigate("/");
+        }
+      });
   }, [navigate]);
 
   if (loading) {

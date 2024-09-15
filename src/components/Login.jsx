@@ -19,11 +19,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-        recaptchaToken,
-      });
+      const response = await Axios.post(
+        "https://user-auth-amit.onrender.com/auth/user/login",
+        {
+          email,
+          password,
+          recaptchaToken,
+        }
+      );
       console.log(response);
       toast.success("Login successfully");
       navigate("/");

@@ -26,7 +26,7 @@ const Signup = () => {
       );
       return;
     }
-    Axios.post("http://localhost:5000/auth/signup", {
+    Axios.post("https://user-auth-amit.onrender.com/auth/user/signup", {
       username,
       email,
       password,
