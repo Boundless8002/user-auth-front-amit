@@ -14,7 +14,7 @@ body {
   text-align: center;
 }
 .sign-up-form {
-  width: 300px;
+  width: 344px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -47,14 +47,21 @@ button {
   -o-border-radius: 4px;
   cursor: pointer;
   margin-bottom: 12px;
+  margin-top: 15px;
+  text-align: center;
+}
+p {
+  text-align: center;
 }
 .btn-logout {
-  width: 10%;
+  width: 100px;
 }
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  margin: 0 40px;
+  padding: 0 40px;
+  background-color: red;
+  font-size: 18px;
 }
 a {
   text-decoration: none;
@@ -63,10 +70,7 @@ a {
 .forget {
   text-align: center;
 }
-p {
-  margin-top: 10px;
-  text-align: center;
-}
+
 button:hover {
   background-color: #2980b9;
 }
@@ -77,9 +81,49 @@ button:hover {
   background-color: #acb1d6;
   color: black;
 }
-.dashboard h1 {
-  padding-top: 20px;
+.dashboard-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .dashboard h2 {
   margin-top: 70px;
+}
+/* header component*/
+.header-section {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+.header-left {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+}
+.header-left img {
+  width: 40px;
+
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.header-right nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  gap: 15px;
+}
+li {
+  list-style: none;
+}
+
+.dashboard-login {
+  width: 100px;
 }

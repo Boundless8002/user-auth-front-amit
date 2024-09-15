@@ -3,11 +3,18 @@ import "../App.css";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import ReCAPTCHA from "react-google-recaptcha";
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const navigate = useNavigate();
+
+  const handleRecaptcha = (token) => {
+    setRecaptchaToken(token); // Set reCAPTCHA token
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +26,11 @@ const Signup = () => {
       );
       return;
     }
-    Axios.post("https://user-auth-amit.onrender.com/auth/signup", {
+    Axios.post("http://localhost:5000/auth/signup", {
       username,
       email,
       password,
+      recaptchaToken,
     })
       .then((response) => {
         console.log(response);
@@ -61,6 +69,11 @@ const Signup = () => {
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        {/* Google reCAPTCHA */}
+        <ReCAPTCHA
+          sitekey="6Lcpgj8qAAAAALsSFpr5P78cqe5vn-RJyD2yvMnQ" // Replace with your site key
+          onChange={handleRecaptcha}
         />
         <button type="submit">Sign Up</button>
         <p>

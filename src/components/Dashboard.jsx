@@ -10,13 +10,13 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     axios
-      .get("https://user-auth-amit.onrender.com/auth/logout")
+      .get("http://localhost:5000/auth/logout")
       .then((res) => {
         if (res.data.status) {
           setTimeout(() => {
             toast.success("Logged out successfully");
             navigate("/login");
-          }, 2000);
+          }, 1000);
         }
       })
       .catch((err) => console.log(err));
@@ -24,17 +24,15 @@ const Dashboard = () => {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get("https://user-auth-amit.onrender.com/auth/verify").then((res) => {
+    axios.get("http://localhost:5000/auth/verify").then((res) => {
       if (res.data.status) {
-        axios
-          .get("https://user-auth-amit.onrender.com/auth/user")
-          .then((res) => {
-            if (res.data.username) {
-              setUsername(res.data.username);
-            }
-            setLoading(false);
-            console.log(res);
-          });
+        axios.get("http://localhost:5000/auth/user").then((res) => {
+          if (res.data.username) {
+            setUsername(res.data.username);
+          }
+          setLoading(false);
+          console.log(res);
+        });
       } else {
         navigate("/");
       }
@@ -46,12 +44,15 @@ const Dashboard = () => {
   }
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
       <div className="dashboard-header">
-        <p>{username}</p>
-        <button onClick={handleLogout} className="btn-logout">
-          Logout
-        </button>
+        <div className="dashboard-left">
+          <li>{username}</li>
+        </div>
+        <div className="dashboard-right">
+          <button onClick={handleLogout} className="btn-logout">
+            Logout
+          </button>
+        </div>
       </div>
 
       <h2>{`Welcome ${username} to our dashboard`}</h2>

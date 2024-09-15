@@ -11,7 +11,7 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Axios.post("https://user-auth-amit.onrender.com/auth/forgot-password", {
+    Axios.post("http://localhost:5000/auth/forgot-password", {
       email,
     })
       .then((response) => {
@@ -36,6 +36,9 @@ const ForgotPassword = () => {
         />
 
         <button type="submit">Send</button>
+        <p>
+          Back to <Link to="/login">Login</Link>
+        </p>
       </form>
     </div>
   );

@@ -3,23 +3,27 @@ import "../App.css";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const navigate = useNavigate();
+
+  const handleRecaptcha = (token) => {
+    setRecaptchaToken(token);
+  };
 
   Axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post(
-        "https://user-auth-amit.onrender.com/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await Axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+        recaptchaToken,
+      });
       console.log(response);
       toast.success("Login successfully");
       navigate("/");
@@ -55,7 +59,12 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <ReCAPTCHA
+          sitekey="6Lcpgj8qAAAAALsSFpr5P78cqe5vn-RJyD2yvMnQ"
+          onChange={handleRecaptcha}
+        />
         <button type="submit">Login</button>
+
         <div className="forget">
           <Link to="/forgot-password" className="centerLink">
             Forgot Password ?
